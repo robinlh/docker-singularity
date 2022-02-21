@@ -6,6 +6,8 @@ LABEL maintainer="robin@idia.ac.za"
 LABEL version="0.1"
 LABEL description="This is custom Docker Image with Singularity 3.9 installed in it to run builds with in CirclCI"
 
+ENV SINGULARITY_VERSION=3.9.1
+
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
