@@ -13,6 +13,6 @@ jobs:
       - checkout
       - run: |
           echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
-          docker build --build-arg SINGULARITY_VERSION=${$SINGULARITY_VERSION} -t roblhall/singularity:$SINGULARITY_VERSION docker/
+          docker build --build-arg SINGULARITY_VERSION=${SINGULARITY_VERSION} -t roblhall/singularity:$SINGULARITY_VERSION docker/
           
           docker push roblhall/singularity:$SINGULARITY_VERSION docker/
