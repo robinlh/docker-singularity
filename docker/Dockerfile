@@ -39,3 +39,5 @@ WORKDIR $GOPATH/src/github.com/sylabs/singularity-ce-${SINGULARITY_VERSION}
 RUN ./mconfig
 RUN make -C ./builddir
 RUN make -C ./builddir install
+
+ENTRYPOINT ["singularity"]
