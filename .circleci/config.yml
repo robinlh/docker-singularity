@@ -8,11 +8,19 @@ workflows:
           context: dockerhub
 jobs:
   build-image:
-    machine: true
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run: |
-          echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
-          docker build -t roblhall/singularity:$SINGULARITY_VERSION singularity/
+      - run:
+          name: "Login to Dockerhub"
+          command: echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
           
-          docker push roblhall/singularity:$SINGULARITY_VERSION
+      - run:
+          name: "Build Singularity container version $SINGULARITY_VERSION"
+          command: docker build -t roblhall/singularity:$SINGULARITY_VERSION singularity/
+          
+      - run:
+          name: "Push image to Dockerhub"
+          command: docker push roblhall/singularity:$SINGULARITY_VERSION
+          
